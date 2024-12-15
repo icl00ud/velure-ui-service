@@ -10,6 +10,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 import { Product } from '../../../utils/interfaces/product.interface';
+import { CartService } from '../../../core/services/cart.service';
 
 @Component({
   selector: 'app-product-card',
@@ -21,10 +22,10 @@ import { Product } from '../../../utils/interfaces/product.interface';
     NzCardModule,
     NzRateModule,
     NzGridModule,
-    NzSkeletonModule
+    NzSkeletonModule,
   ],
   templateUrl: './product-card.component.html',
-  styleUrl: './product-card.component.less'
+  styleUrl: './product-card.component.less',
 })
 export class ProductCardComponent {
   @Input() product: Product = {} as Product;
@@ -38,8 +39,17 @@ export class ProductCardComponent {
   enableCarouselAutoPlay: boolean = false;
   enableCarouselDots: boolean = true;
 
-  constructor() { }
+  constructor(
+    private cartService: CartService
+  ) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  addToCart(): void {
+    this.cartService.addToCart(this.product);
+  }
+
+  removeFromCart(): void {
+    this.cartService.removeFromCart(this.product._id);
   }
 }
