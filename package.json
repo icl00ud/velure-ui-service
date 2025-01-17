@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start:dev": "NG_APP_ENV=dev ng serve",
+    "start": "NG_APP_ENV=dev ng serve",
     "start:production": "NG_APP_ENV=production ng serve",
     "build": "NG_APP_ENV=production ng build",
     "watch": "ng build --watch --configuration development",
