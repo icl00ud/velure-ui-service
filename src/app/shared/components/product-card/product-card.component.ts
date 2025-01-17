@@ -8,6 +8,7 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzRateModule } from 'ng-zorro-antd/rate';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { NzButtonModule } from 'ng-zorro-antd/button';
 
 import { Product } from '../../../utils/interfaces/product.interface';
 import { CartService } from '../../../core/services/cart.service';
@@ -23,6 +24,7 @@ import { CartService } from '../../../core/services/cart.service';
     NzRateModule,
     NzGridModule,
     NzSkeletonModule,
+    NzButtonModule
   ],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.less',
