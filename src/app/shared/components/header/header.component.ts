@@ -27,7 +27,6 @@ import { Subscription } from 'rxjs';
 })
 export class HeaderComponent implements OnInit, OnDestroy {
   hoveringProduct: boolean = false;
-  showHeader: boolean = true;
   isLoggedIn: boolean = true;
   private authSubscription!: Subscription;
 
@@ -39,7 +38,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.authSubscription = this.authService.getAuthStatus().subscribe((loggedIn) => {
       this.isLoggedIn = loggedIn;
-      this.showHeader = this.isLoggedIn;
     });
 
     this.authService.isAuthenticated().subscribe();

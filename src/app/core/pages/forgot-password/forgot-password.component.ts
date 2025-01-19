@@ -36,9 +36,7 @@ export class ForgotPasswordComponent {
 
   public forgotPasswordForm: FormGroup<{
     email: FormControl<string>;
-  }> = this.fb.group({
-    email: ['', [Validators.required]],
-  });
+  }>;
 
   constructor(
     private fb: NonNullableFormBuilder,
@@ -46,7 +44,11 @@ export class ForgotPasswordComponent {
     private blobService: BlobService,
     private sanitizer: DomSanitizer,
     private readonly authService: AuthenticationService,
-  ) {}
+  ) {
+    this.forgotPasswordForm = this.fb.group({
+      email: ['', [Validators.required]],
+    });
+  }
 
   ngOnInit() {
     this.translateService.get('FORGOT_PASSWORD.EMAIL_PLACEHOLDER').subscribe((res: string) => {

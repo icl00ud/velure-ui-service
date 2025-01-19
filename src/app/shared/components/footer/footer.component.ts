@@ -1,18 +1,15 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzIconModule } from "ng-zorro-antd/icon";
+import { NzDividerModule } from "ng-zorro-antd/divider";
 
 @Component({
-  selector: 'app-footer',
+  selector: "app-footer",
   standalone: true,
-  imports: [
-    NzIconModule,
-    NzDividerModule
-  ],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.less'
+  imports: [NzIconModule, NzDividerModule],
+  templateUrl: "./footer.component.html",
+  styleUrl: "./footer.component.less",
 })
 export class FooterComponent {
-
+  currentYear: number = new Date().getFullYear();
 }

@@ -1,33 +1,26 @@
-<div [className]="'product-card'">
-    <div>
-        <nz-card 
-            [nzCover]="coverTemplate" 
-            [nzHoverable]="isHoverable" 
-            [nzBorderless]="borderless"
-            [nzLoading]="isLoading">
-        </nz-card>
+<!-- product-card.component.html -->
+<div class="product-card">
+  <nz-card [nzBorderless]="true">
+    <div class="product-content">
+      <div class="image-container">
+        <app-carousel
+          [carouselData]="product.images"
+          [enableAutoPlay]="false"
+          [enableSwipe]="true"
+          [enableDots]="false"
+        >
+        </app-carousel>
+      </div>
 
-        <ng-template #coverTemplate>
-            <div>
-                <app-carousel 
-                    [carouselData]="product.images"
-                    [enableAutoPlay]="enableCarouselAutoPlay"
-                    [enableSwipe]="enableCarouselSwipe"
-                    [enableDots]="enableCarouselDots"
-                    [section]="section">
-                </app-carousel>
-                <p>{{ product.name }}</p>
-                <p>R${{ product.price.toFixed(2) }}</p>
-                <nz-rate 
-                    nzAllowHalf
-                    [nzDisabled]="rateDisabled" 
-                    [ngModel]="product.rating">
-                </nz-rate>
-                <div class="product-actions">
-                    <button nz-button nzType="primary" (click)="addToCart()">Adicionar ao Carrinho</button>
-                    <button nz-button nzType="default" nzDanger (click)="removeFromCart()">Remover do Carrinho</button>
-                </div>
-            </div>
-        </ng-template>
+      <div class="product-info">
+        <h3 class="product-name">{{ product.name }}</h3>
+        <p class="product-price">R$ {{ product.price.toFixed(2) }}</p>
+        <p class="product-description">{{ product.description }}</p>
+      </div>
+
+      <button nz-button class="add-button" (click)="addToCart()">
+        Adicionar ao Carrinho
+      </button>
     </div>
+  </nz-card>
 </div>

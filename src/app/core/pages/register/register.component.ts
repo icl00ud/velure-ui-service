@@ -51,12 +51,7 @@ export class RegisterComponent implements OnInit {
     email: FormControl<string>;
     password: FormControl<string>;
     confirmPassword: FormControl<string>;
-  }> = this.fb.group({
-    name: ['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(1)]],
-    confirmPassword: ['', [Validators.required, this.matchPasswordValidator()]],
-  });
+  }>;
 
   private translations = {
     'REGISTER.NAME': 'namePlaceholder',
@@ -79,7 +74,14 @@ export class RegisterComponent implements OnInit {
     private readonly authService: AuthenticationService,
     private readonly message: NzMessageService,
     private readonly router: Router
-  ) { }
+  ) {
+    this.registerForm = this.fb.group({
+      name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(1)]],
+      confirmPassword: ['', [Validators.required, this.matchPasswordValidator()]],
+    });
+  }
 
   ngOnInit() {
     this.blobService.getBase64FromUrl(this.logoUrl).subscribe((base64String: string) => {

@@ -1,5 +1,7 @@
+// cart.service.ts
 import { Injectable } from '@angular/core';
 import { Product } from '../../utils/interfaces/product.interface';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 interface CartItem {
   product: Product;
@@ -14,8 +16,11 @@ export class CartService {
   private readonly localStorageKey = 'cart';
   private readonly maxQuantity = 99;
 
+  private cartSubject: BehaviorSubject<CartItem[]> = new BehaviorSubject<CartItem[]>([]);
+
   constructor() {
     this.loadCartFromLocalStorage();
+    this.cartSubject.next(this.cart);
   }
 
   addToCart(product: Product, quantity: number = 1): void {
@@ -26,6 +31,7 @@ export class CartService {
       this.cart.push({ product, quantity: Math.min(quantity, this.maxQuantity) });
     }
     this.saveCartToLocalStorage();
+    this.cartSubject.next(this.cart);
   }
 
   updateQuantity(productId: string, quantity: number): void {
@@ -33,16 +39,18 @@ export class CartService {
     if (item) {
       item.quantity = Math.max(1, Math.min(quantity, this.maxQuantity));
       this.saveCartToLocalStorage();
+      this.cartSubject.next(this.cart);
     }
   }
 
-  getCartItems(): CartItem[] {
-    return this.cart;
+  getCartItems(): Observable<CartItem[]> {
+    return this.cartSubject.asObservable();
   }
 
   removeFromCart(productId: string): void {
     this.cart = this.cart.filter((item) => item.product._id !== productId);
     this.saveCartToLocalStorage();
+    this.cartSubject.next(this.cart);
   }
 
   getTotalPrice(): number {
@@ -55,6 +63,7 @@ export class CartService {
   clearCart(): void {
     this.cart = [];
     this.saveCartToLocalStorage();
+    this.cartSubject.next(this.cart);
   }
 
   private saveCartToLocalStorage(): void {

@@ -7,6 +7,23 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateService } from './core/services/translate.service';
 
 import { routes } from './app.routes';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+import { DashboardOutline, MenuUnfoldOutline, FormOutline, MenuFoldOutline, ShoppingCartOutline, UserOutline, GithubFill, GithubOutline, LockOutline, MailOutline, DeleteOutline, DeleteFill, DeleteTwoTone } from '@ant-design/icons-angular/icons';
+
+const icons = [
+  MenuFoldOutline,
+  MenuUnfoldOutline,
+  DashboardOutline,
+  FormOutline,
+  ShoppingCartOutline,
+  UserOutline,
+  GithubOutline,
+  LockOutline,
+  MailOutline,
+  DeleteOutline,
+  DeleteFill,
+  DeleteTwoTone
+];
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +31,7 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     importProvidersFrom(
       HttpClientModule,
+      NzIconModule.forRoot(icons),
       TranslateModule.forRoot({
         defaultLanguage: 'pt',
         useDefaultLang: true,
@@ -23,6 +41,6 @@ export const appConfig: ApplicationConfig = {
           deps: [HttpClient]
         }
       }),
-      )
-    ]
+    )
+  ]
 };
