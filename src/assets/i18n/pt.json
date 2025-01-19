@@ -17,6 +17,7 @@
         "REGISTER": "Registrar",
         "ERROR": "Nome de usuário ou senha inválidos",
         "REMEMBERME": "Lembrar-me",
+        "INVALID_CREDENTIALS": "Credenciais inválidas.",
         "DOES_NOT_HAVE_ACCOUNT": "Não tem uma conta?"
     },
     "REGISTER": {

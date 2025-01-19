@@ -8,7 +8,7 @@ import { TranslateService } from './core/services/translate.service';
 
 import { routes } from './app.routes';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { DashboardOutline, MenuUnfoldOutline, FormOutline, MenuFoldOutline, ShoppingCartOutline, UserOutline, GithubFill, GithubOutline } from '@ant-design/icons-angular/icons';
+import { DashboardOutline, MenuUnfoldOutline, FormOutline, MenuFoldOutline, ShoppingCartOutline, UserOutline, GithubFill, GithubOutline, LockOutline, MailOutline, DeleteOutline, DeleteFill, DeleteTwoTone } from '@ant-design/icons-angular/icons';
 
 const icons = [
   MenuFoldOutline,
@@ -17,7 +17,12 @@ const icons = [
   FormOutline,
   ShoppingCartOutline,
   UserOutline,
-  GithubOutline
+  GithubOutline,
+  LockOutline,
+  MailOutline,
+  DeleteOutline,
+  DeleteFill,
+  DeleteTwoTone
 ];
 
 export const appConfig: ApplicationConfig = {
