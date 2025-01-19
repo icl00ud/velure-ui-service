@@ -45,10 +45,7 @@ export class LoginComponent {
   public validateForm: FormGroup<{
     email: FormControl<string>;
     password: FormControl<string>;
-  }> = this.fb.group({
-    email: ['', [Validators.required]],
-    password: ['', [Validators.required]],
-  });
+  }>;
 
   private translations = {
     'LOGIN.USER_EMAIL': 'userPlaceholder',
@@ -67,7 +64,12 @@ export class LoginComponent {
     private readonly authService: AuthenticationService,
     private readonly router: Router,
     private readonly config: ConfigService
-  ) { }
+  ) {
+    this.validateForm = this.fb.group({
+      email: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+    });
+  }
 
   ngOnInit() {
     this.blobService.getBase64FromUrl(this.logoUrl).subscribe((base64String: string) => this.safeLogoImageUrl = this.sanitizer.bypassSecurityTrustUrl('data:image/png;base64,' + base64String));

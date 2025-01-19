@@ -22,7 +22,7 @@ import { ProductService } from '../../../core/services/product.service';
 export class ProductsTabComponent {
   products: Product[] = [];
 
-  @Input() section: string = '';
+  @Input() section: string = 'home';
 
   // Pagination
   totalProducts: number = 8;
@@ -42,14 +42,20 @@ export class ProductsTabComponent {
   ) { }
 
   ngOnInit() {
-    if(this.section === 'home')
-      this.productService.getProductsByPage(this.currentPageIndex, this.itemsPerPage).subscribe(products => this.products = products);  
-    
-    if(this.section === 'category')
+    if (!this.itemsPerPage || this.itemsPerPage <= 0) {
+      console.error('itemsPerPage não definido ou inválido!');
+      return;
+    }
+  
+    if (this.section === 'home') {
+      this.productService.getProductsByPage(this.currentPageIndex, this.itemsPerPage).subscribe(products => this.products = products);
+    } else if (this.section === 'category') {
       this.productService.getProductsByPageAndCategory(this.currentPageIndex, this.itemsPerPage, this.productCategory).subscribe(products => this.products = products);
-
+    }
+  
     this.productService.getProductsCount().subscribe(count => this.totalProducts = count);
   }
+  
 
   handlePageChange(event: any): void {
     this.currentPageIndex = event;
